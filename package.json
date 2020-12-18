@@ -2,10 +2,10 @@
   "name": "api_test",
   "version": "1.0.0",
   "description": "full stack developer test api",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node src/index.js"
   },
   "author": "Yasmin Vargas",
   "license": "ISC",
