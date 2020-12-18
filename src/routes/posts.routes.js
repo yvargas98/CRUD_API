@@ -1,4 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-export default router;
+router.get("/posts", (req, res) => {
+    res.send("All posts");
+});
+
+module.exports = router;

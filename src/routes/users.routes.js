@@ -1,4 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-export default router;
+router.get("/users", (req, res) => {
+    res.send("All users");
+});
+
+module.exports = router;
