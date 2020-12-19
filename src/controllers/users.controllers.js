@@ -6,7 +6,7 @@ exports.createUser = (req, res) => {
 
 exports.getUsers = async (req, res) => {
     try {
-        const response = await connection().query('SELECT * FROM public."user";');
+        const response = await connection().query('SELECT * FROM public."users";');
         res.send(response.rows);
     } catch (error) {
         console.log(error);
