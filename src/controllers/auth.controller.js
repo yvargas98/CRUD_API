@@ -23,7 +23,7 @@ exports.login = async (req, res) => {
                 logoutUrl: 'logout',
                 userId,
                 role: user.rows[0].role
-            }, JWT);
+            }, JWT, {expiresIn: 86400});
             res.cookie('token', token);
             res.send(token);
             return;
