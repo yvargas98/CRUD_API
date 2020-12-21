@@ -7,19 +7,17 @@ const baseUrl = process.env.WEBAPP_URL || '';
 const JWT = process.env.JWT;
 
 exports.login = async (req, res) => {
-    const { username, password } = req.body || {};
-    const dbPassword = await connection().query(`SELECT "password" FROM public."users" WHERE "email" = '${username}';`);
+    const { email, password } = req.body || {};
+    const dbPassword = await connection().query(`SELECT "password" FROM public."users" WHERE "email" = '${email}';`);
     if(dbPassword.rows.length){
         const hashPass = dbPassword.rows[0].password;
-        const user = await connection().query(`SELECT * FROM public."users" WHERE "email" = '${username}';`);
+        const user = await connection().query(`SELECT * FROM public."users" WHERE "email" = '${email}';`);
         const userId = user.rows[0].user_id;
-        //para generar las contraseñas de los otros usuarios
-        //bcrypt.hash(password, 12, function(err,hash){ console.log(hash)});
         const isCorrectPassword = await bcrypt.compare(password, hashPass);
         if(isCorrectPassword && userId){
             const token = jsonwebtoken.sign({
-                name: username,
-                email: username,
+                name: email,
+                email: email,
                 logoutUrl: 'logout',
                 userId,
                 role: user.rows[0].role
